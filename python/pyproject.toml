@@ -5,38 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hsu-echo"
 version = "1.0.0"
-description = "HSU Repository Portability Framework - Approach 1 Python Example"
+description = "HSU Repository Portability Framework - Approach 3 Python Example"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
 ]
 
-# Core dependencies (excluding Nuitka build exclusions)
 dependencies = [
     "grpcio>=1.50.0",
     "grpcio-tools>=1.50.0",
     "protobuf>=4.0.0",
 ]
-
-# HSU Core dependency (choose ONE approach):
-# OPTION 1: Direct Git dependency
-# "hsu-core @ git+https://github.com/core-tools/hsu-core.git",
-
-# OPTION 2: Editable local dependency (for development)  
-# "hsu-core @ file:///absolute/path/to/hsu-core",
-
-# OPTION 3: Editable relative path (recommended for HSU projects - use with UV)
-# Note: Standard pip doesn't support relative paths directly in pyproject.toml
-# Use: uv add --editable ../hsu-core
-# "hsu-core",  # Placeholder - install with UV command
 
 [project.optional-dependencies]
 dev = [
@@ -45,22 +27,6 @@ dev = [
     "isort>=5.0.0",
     "mypy>=0.950",
     "ruff>=0.0.280",
-]
-
-# Nuitka build exclusions (your current approach)
-build = [
-    "nuitka>=1.8.0",
-]
-
-# Heavy ML libraries excluded from Nuitka builds
-ml-heavy = [
-    "tensorflow==2.15.0",
-    "torch==2.0.0",
-    "scipy==1.10.0",
-    "matplotlib==3.7.0",
-    "pandas==2.0.0",
-    "scikit-learn==1.3.0",
-    "numpy>=1.21.0",
 ]
 
 [tool.setuptools]
@@ -74,40 +40,4 @@ packages = [
 ]
 
 [tool.setuptools.package-dir]
-"hsu_echo" = "lib"
-
-# UV configuration (future-ready)
-[tool.uv]
-dev-dependencies = [
-    "pytest>=7.0.0",
-    "black>=22.0.0",
-    "isort>=5.0.0",
-    "mypy>=0.950",
-    "ruff>=0.0.280",
-]
-
-# Ruff configuration (fast linting)
-[tool.ruff]
-line-length = 88
-select = ["E", "F", "I", "N", "W"]
-ignore = []
-
-[tool.ruff.per-file-ignores]
-"__init__.py" = ["F401"]
-
-# Black configuration  
-[tool.black]
-line-length = 88
-target-version = ['py38']
-
-# isort configuration
-[tool.isort]
-profile = "black"
-line_length = 88
-
-# MyPy configuration
-[tool.mypy]
-python_version = "3.8"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true 
+"hsu_echo" = "lib" 
